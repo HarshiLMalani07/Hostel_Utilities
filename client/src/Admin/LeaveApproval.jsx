@@ -9,7 +9,7 @@ const LeaveApproval = () => {
   useEffect(() => {
     const fetchAllLeaves = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/admin/grantleave");
+        const res = await axios.get("http://localhost:5001/admin/grantleave");
         console.log(res.data);
         setLeaves(res.data);
       } catch (error) {
@@ -21,7 +21,7 @@ const LeaveApproval = () => {
 
   const handleReject = async (id) => {
     try {
-      await axios.get("http://localhost:5000/admin/rejectleave/" + id);
+      await axios.get("http://localhost:5001/admin/rejectleave/" + id);
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ const LeaveApproval = () => {
   };
   const handleGrant = async (id) => {
     try {
-      await axios.get("http://localhost:5000/admin/grantleave/" + id);
+      await axios.get("http://localhost:5001/admin/grantleave/" + id);
       window.location.reload();
     } catch (error) {
       console.log(error);

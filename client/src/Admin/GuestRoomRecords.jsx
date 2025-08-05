@@ -7,7 +7,7 @@ const GuestRoomRecords = () => {
   useEffect(() => {
     const fetchAllRooms = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/admin/getrooms");
+        const res = await axios.get("http://localhost:5001/admin/getrooms");
         // console.log(res.data);
         setrooms(res.data);
       } catch (error) {

@@ -36,7 +36,7 @@ const ApplyLeave = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/leaveapplication", newLeave);
+      await axios.post("http://localhost:5001/user/leaveapplication", newLeave);
       console.log(newLeave);
       navigate("/");
     } catch (err) {

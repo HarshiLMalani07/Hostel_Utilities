@@ -16,7 +16,7 @@ const MyComplaints = () => {
   useEffect(() => {
     const fetchAllComplaints = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/user/mycomplaints");
+        const res = await axios.get("http://localhost:5001/user/mycomplaints");
         console.log(res.data);
         setComplaints(res.data);
       } catch (error) {
@@ -28,7 +28,7 @@ const MyComplaints = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:5000/user/delcomplaint/" + id);
+      await axios.delete("http://localhost:5001/user/delcomplaint/" + id);
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ const MyComplaints = () => {
 
   const handleCheckoff = async (id) => {
     try {
-      await axios.get("http://localhost:5000/user/checkoffcomplaint/" + id);
+      await axios.get("http://localhost:5001/user/checkoffcomplaint/" + id);
       window.location.reload();
     } catch (error) {
       console.log(error);

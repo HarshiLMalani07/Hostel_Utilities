@@ -7,7 +7,24 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+// ✅ Enable CORS before your routes
+app.use(cors({
+  origin: 'http://localhost:5173', // Your frontend's origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
+// ✅ Handle preflight requests globally
+app.options('*', cors());
+
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
@@ -25,18 +42,9 @@ db.connect((error) => {
 });
 
 const host = process.env.PORT || 3000;
-app.listen(host, () => {
-  console.log(`Server is listening on http://localhost:${host}`);
-});
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
+app.listen(host, () => {
+console.log(`Server is listening on http://localhost:${host}`);
 });
 
 app.post("/signup", (req, res) => {

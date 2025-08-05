@@ -7,7 +7,7 @@ const StudentRecords = () => {
   useEffect(() => {
     const fetchAllStudents = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/admin/getstudents");
+        const res = await axios.get("http://localhost:5001/admin/getstudents");
         // console.log(res.data);
         setstudents(res.data);
       } catch (error) {
